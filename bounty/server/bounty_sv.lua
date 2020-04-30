@@ -4,10 +4,28 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local usedIntel = false
 local hiddencoords = Config.hiddencoords
+local onDuty = 0
 
 ESX.RegisterServerCallback('bounty:getlocation', function(source, cb)
     cb(hiddencoords)
 end)
+
+ESX.RegisterServerCallback('bounty:getCops', function(source, cb)
+    cb(getCops())
+end)
+
+function getCops()
+  local xPlayers = ESX.GetPlayers()
+  onDuty = 0
+
+  for i=1, #xPlayers, 1 do
+    local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+    if xPlayer.job.name == Config.policeJob then
+      onDuty = onDuty + 1
+    end
+  end
+  TriggerClientEvent('bounty:onDuty', -1, onDuty)
+end
 
 RegisterServerEvent("bounty:GiveItem")
 AddEventHandler("bounty:GiveItem", function(x,y,z)
@@ -31,10 +49,14 @@ if Config.useItem then
 	end)
 end
 
+RegisterNetEvent('bounty:updatetable')
+AddEventHandler('bounty:updatetable', function(bool)
+    TriggerClientEvent('bounty:synctable', -1, bool)
+end)
+
 RegisterServerEvent("bounty:syncMission")
 AddEventHandler("bounty:syncMission", function(missionData)
 	local missionData = missionData
-	--tprint(missionData, 1)          -- Prints locations table and which one is active in the server console - (will spam)
 	TriggerClientEvent('bounty:syncMissionClient', -1, missionData)
 end)
 
@@ -45,14 +67,19 @@ AddEventHandler("bounty:delivery", function()
     local check = xPlayer.getInventoryItem('dogtags').count
 
     if check >= 1 then
-    	xPlayer.addMoney(Config.reward)
-    	xPlayer.removeInventoryItem('dogtags', 1)
+      xPlayer.removeInventoryItem('dogtags', 1)
+      if not Config.useDirtyMoney then
+        xPlayer.addMoney(Config.reward)
+      else
+        xPlayer.addAccountMoney('black_money', Config.reward)
+      end
     	TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'inform', text = _U'dollar'..Config.reward.._U'payment'})
     else
     	TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = _U'no_tags'})
     end
 end)
 
+-- call this function if you want to print the table in server console - (debugging)
 function tprint (tbl, indent)
   if not indent then indent = 0 end
   for k, v in pairs(tbl) do
