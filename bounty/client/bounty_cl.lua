@@ -9,6 +9,7 @@ Citizen.CreateThread(function()
 ESX.PlayerData = ESX.GetPlayerData()
 end)
 
+local used 
 local coords
 local active = false
 local blip
@@ -18,7 +19,7 @@ local enemies = {}
 local box2
 local location = nil
 --local rand = math.random(#Config.locations)
-local rand = 3 -- This is for testing localtions only. Don't unhash this if you don't know what this does
+local rand = 3 -- This is for testing locations only. Don't unhash this if you don't know what this does
 
 Citizen.CreateThread(function()
 	while ESX == nil do TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end) Wait(0) end
@@ -42,12 +43,13 @@ end)
 end)]]
 
 RegisterNetEvent('bounty:intel')
-AddEventHandler('bounty:intel', function()
-	if not usedIntel then
+AddEventHandler('bounty:intel', function(source)
+	if not used then
 		phoneAnim()
 		main()
 	else
-
+		exports['mythic_notify']:DoLongHudText('inform', _U'used')
+	end
 end)
 
 if not Config.useItem then
@@ -73,7 +75,7 @@ if not Config.useItem then
 					sleep = 5
 					DrawText3Ds(coords.x, coords.y, coords.z, _U'unavailable')
 				else
-					sleep = 3000
+					sleep = 1500
 				end
 			end
 			Citizen.Wait(sleep)
@@ -176,7 +178,7 @@ end
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5)
+		sleep = 5
 		local player = GetPlayerPed(-1)
 		local playercoords = GetEntityCoords(player)
 		local disttocoord = #(vector3(2475.588, -384.1472, 94.39928)-vector3(playercoords.x, playercoords.y, playercoords.z))
@@ -186,7 +188,10 @@ Citizen.CreateThread(function()
 				TriggerServerEvent('bounty:delivery')
 				Citizen.Wait(2000)
 			end
+		else
+			sleep = 1500
 		end
+	Citizen.Wait(sleep)
 	end
 end)
 

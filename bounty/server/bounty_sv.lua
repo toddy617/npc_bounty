@@ -3,7 +3,6 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local usedIntel = false
---local hiddencoords = {x = 234.933, y = -2056.778, z = 17.98385} 
 local hiddencoords = Config.hiddencoords
 
 ESX.RegisterServerCallback('bounty:getlocation', function(source, cb)
@@ -29,7 +28,6 @@ if Config.useItem then
 	    local xPlayer = ESX.GetPlayerFromId(source)
 	    xPlayer.removeInventoryItem('intel', 1)
 	    TriggerClientEvent('bounty:intel', source)
-      usedIntel = true
 	end)
 end
 

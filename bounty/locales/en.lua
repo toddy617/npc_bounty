@@ -16,4 +16,5 @@ Locales['en'] = {
 	['on_use'] = 'Decyphering intel',
 	['decipher'] = 'Deciphering intel',
 	['searching'] = 'Searching crates...',
+	['used'] = 'Somebody has already started a mission',
 }
