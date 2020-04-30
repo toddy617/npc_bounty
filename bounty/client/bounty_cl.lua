@@ -106,7 +106,7 @@ function main()
 			Citizen.Wait(200)
 			playerpos = GetEntityCoords(player)
 			local disttocoord = #(vector3(location.enemy.x, location.enemy.y, location.enemy.z)-vector3(playerpos.x,playerpos.y,playerpos.z))
-			if disttocoord < 200 then
+			if disttocoord < Config.distance then
 				exports['mythic_notify']:DoLongHudText('inform', _U'kill_all')
 				spawnPed(location.enemy.x,location.enemy.y,location.enemy.z)
 				--RemoveBlip(radius)					-- Unhash this if you want the red circle to disappear once you're at the location

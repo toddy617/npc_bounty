@@ -34,7 +34,7 @@ end
 RegisterServerEvent("bounty:syncMission")
 AddEventHandler("bounty:syncMission", function(missionData)
 	local missionData = missionData
-	--tprint(missionData, 1)          -- Prints locations table and which one is active in the server console 
+	--tprint(missionData, 1)          -- Prints locations table and which one is active in the server console - (will spam)
 	TriggerClientEvent('bounty:syncMissionClient', -1, missionData)
 end)
 
@@ -68,15 +68,3 @@ function tprint (tbl, indent)
   end
 end
 
-
--------------------------------------------------------
-
---[[RegisterServerEvent("bounty:synccoop")
-AddEventHandler("bounty:synccoop", function(players)
-	print("IN SERVER SYNCCOOP")
-	for j=1,#players do
-		print(j,players[j])
-		TriggerClientEvent('bounty:startcoop', players[j])
-	end
-	print("Skipped loop")
-end)]]
