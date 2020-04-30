@@ -23,7 +23,7 @@ local box2
 local inUse = false
 local location = nil
 --local rand = math.random(#Config.locations)
-local rand = 3 -- This is for testing locations only. Don't unhash this if you don't know what this does
+local rand = 16 -- This is for testing locations only. Don't unhash this if you don't know what this does
 
 if not Config.hideBlip then
 	Citizen.CreateThread(function()
@@ -65,6 +65,26 @@ AddEventHandler('bounty:intel', function(source)
 		exports['mythic_notify']:DoLongHudText('inform', _U'used')
 	end
 end)
+
+RegisterCommand('test', function()
+    local hash = GetHashKey("s_m_y_blackops_01")
+    RequestModel(hash)
+    while not HasModelLoaded(hash) do
+        Citizen.Wait(0)
+    end
+    local ped = CreatePed(4, hash, GetEntityCoords(GetPlayerPed(-1)), 0.0, true, true)
+    local headshot = RegisterPedheadshotTransparent(ped)
+    while not IsPedheadshotReady(headshot) or not IsPedheadshotValid(headshot) do
+        Citizen.Wait(0)
+    end
+    local txd = GetPedheadshotTxdString(headshot)
+    print(txd)
+    SetNotificationTextEntry("STRING")
+    AddTextComponentSubstringPlayerName("This is your target")
+    EndTextCommandThefeedPostMessagetext(txd, txd, true, 2, "Anonymous", "RE: Get rid of him")
+    UnregisterPedheadshot(headshot)
+end)
+
 
 if not Config.useItem then
 	Citizen.CreateThread(function()
@@ -146,7 +166,6 @@ function main()
 			else
 				local howmany = checkisdead()
 				if howmany == Config.enemies then
-					exports['mythic_notify']:DoLongHudText('inform', _U'killed_all')
 					Citizen.Wait(2000)
 					clearmission()
 					success(location.crate.x, location.crate.y, location.crate.z, location.crate.h)
@@ -218,7 +237,6 @@ end)
 function phoneAnim()
 	local player = GetPlayerPed(-1)
     local x,y,z = table.unpack(GetEntityCoords(player))
-	exports['mythic_notify']:DoLongHudText('inform', _U'on_use')
 	exports['progressBars']:startUI(8000, _U'decipher')
 	playAnim('cellphone@', 'cellphone_text_read_base', 8000)
 	Citizen.Wait(500)
@@ -286,9 +304,11 @@ function spawnPed(x,y,z)
 	end	
 
 	ESX.TriggerServerCallback("bounty:getCops", function(getCops)
-    
+		if Config.waypoint then 
+    		SetNewWaypoint(x, y)
+    	end
 		for i=1,Config.enemies do
-			local rnum = math.random(-10,40)
+			local rnum = math.random(10,40)
 			local pick = math.random(1,5)
 			local wep
 			local enemy
@@ -340,13 +360,16 @@ function spawnPed(x,y,z)
 			SetPedKeepTask(enemy, true)
 			GiveWeaponToPed(enemy, wep, 500, false, true)
 			TaskShootAtEntity(enemy, GetPlayerPed(-1), -1, GetHashKey("FIRING_PATTERN_FULL_AUTO"))
-			SetEntityMaxHealth(enemy, 400)
-			SetEntityHealth(enemy, 400)
-			SetPedAccuracy(enemy, 40)
+			SetEntityMaxHealth(enemy, Config.enemyHealth)
+			SetEntityHealth(enemy, Config.enemyHealth)
+			SetPedAccuracy(enemy, Config.enemyAcc)
 			SetPedAsCop(enemy, true)
 			SetPedDropsWeaponsWhenDead(enemy,false)
 			TaskCombatPed(enemy, GetPlayerPed(-1), 0, 16)
 			table.insert(enemies, enemy)
+			if Config.enemyVest then
+				SetPedArmour(enemy, Config.enemyArmor)
+			end
 			if Config.aiBlip then
 				SetPedAiBlip(enemy, true) 
 			end               
@@ -368,9 +391,3 @@ function DrawText3Ds(x,y,z, text)
     local factor = (string.len(text)) / 370
     DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 41, 11, 41, 68)
 end
-
---[[difficulty1_1
-difficulty1_2
-difficulty1_3
-difficulty1_4
-difficulty1_5]]
