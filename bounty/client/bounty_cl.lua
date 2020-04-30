@@ -43,10 +43,11 @@ end)]]
 
 RegisterNetEvent('bounty:intel')
 AddEventHandler('bounty:intel', function()
-	while not usedIntel do
+	if not usedIntel then
 		phoneAnim()
 		main()
-	end
+	else
+
 end)
 
 if not Config.useItem then
@@ -163,6 +164,7 @@ function success(x,y,z,h)
 					Citizen.Wait(2000)
 					Config.locations[rand]['active'] = false
 					TriggerServerEvent('bounty:syncMission', locations)
+					usedIntel = false
 				end
 			else
 				sleep = 1200
