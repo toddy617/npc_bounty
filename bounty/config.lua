@@ -4,7 +4,8 @@ Config.Locale = 'en' -- Language of the resource. Currently available: en, de
 Config.useItem = true -- change this if you want to use an item to start missions or use a hidden location - (true/false)
 Config.hiddencoords = vector3(234.933, -2056.778, 17.98385) -- if useItem is false then you will have to set the coords for the hidden location here - (x,y,z) 
 Config.cleanDead = false -- change this if you want the peds to be deleted once they die - (true/false)
-Config.enemies = 5 -- change this to the amount of enemies you want to spawn at a location - (10-20 enemies recommended)
+Config.enemies = 10 -- change this to the amount of enemies you want to spawn at a location - (10-20 enemies recommended)
+Config.radius = 500.0 -- change this to increase/decrease the radius of the search area - (float value)
 
 -- Change the weapons the peds spawn with. Make sure the weapons aren't blacklisted or else this won't work
 Config.weapon1 = "WEAPON_APPISTOL"

@@ -9,10 +9,18 @@ Citizen.CreateThread(function()
 ESX.PlayerData = ESX.GetPlayerData()
 end)
 
-local used 
+Citizen.CreateThread(function()
+	while ESX == nil do TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end) Wait(0) end
+    ESX.TriggerServerCallback('bounty:getlocation', function(servercoords)
+        coords = servercoords
+    end)
+end)
+
 local coords
+local usedItem = false
 local active = false
 local blip
+local cleanDead
 local enroute
 local radius
 local enemies = {}
@@ -20,13 +28,6 @@ local box2
 local location = nil
 --local rand = math.random(#Config.locations)
 local rand = 3 -- This is for testing locations only. Don't unhash this if you don't know what this does
-
-Citizen.CreateThread(function()
-	while ESX == nil do TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end) Wait(0) end
-    ESX.TriggerServerCallback('bounty:getlocation', function(servercoords)
-        coords = servercoords
-    end)
-end)
 
 -- Hash this out if useItem is false and you want the starting location to have a blip
 --[[Citizen.CreateThread(function()
@@ -44,7 +45,8 @@ end)]]
 
 RegisterNetEvent('bounty:intel')
 AddEventHandler('bounty:intel', function(source)
-	if not used then
+	if not usedItem then
+		usedItem = true
 		phoneAnim()
 		main()
 	else
@@ -123,8 +125,8 @@ function main()
 				clearmission()
 				return
 			else
-				local howmany = checkisdead()
-				if howmany == Config.enemies then
+				local targetDead = checkisdead()
+				if targetDead == Config.enemies then
 					exports['mythic_notify']:DoLongHudText('inform', _U'killed_all')
 					Citizen.Wait(2000)
 					clearmission()
@@ -134,6 +136,8 @@ function main()
 		end
 	end)
 end
+
+
 
 function success(x,y,z,h)
 	local box = GetHashKey("prop_mb_crate_01b")
@@ -166,7 +170,6 @@ function success(x,y,z,h)
 					Citizen.Wait(2000)
 					Config.locations[rand]['active'] = false
 					TriggerServerEvent('bounty:syncMission', locations)
-					usedIntel = false
 				end
 			else
 				sleep = 1200
@@ -220,6 +223,7 @@ end
 function clearmission()
 	RemoveBlip(radius)
 	RemoveBlip(blip)
+	usedItem = false
 	active = false
 	if Config.cleanDead then
 		for a = 1, #enemies do
@@ -243,7 +247,7 @@ function checkisdead()
 end
 
 function addBlip(x,y,z)
-	radius = AddBlipForRadius(x, y, z, 500.0)
+	radius = AddBlipForRadius(x, y, z, Config.radius)
 	blip = AddBlipForCoord(x, y, z)
 	SetBlipSprite(blip, 433)
 	SetBlipColour(blip, 1)
@@ -256,13 +260,12 @@ function addBlip(x,y,z)
 end
 
 function spawnPed(x,y,z)
-
 	local ped = GetHashKey("s_m_y_blackops_01")
 	RequestModel(ped)
 
 	while not HasModelLoaded(ped) do
 		Citizen.Wait(0)
-	end
+	end	
 
 	for i=1,Config.enemies do
 		local rnum = math.random(-10,40)
@@ -287,11 +290,11 @@ function spawnPed(x,y,z)
 			enemy = CreatePed(4, ped, x+rnum, y+rnum, z, 100.0, true, true)
 			wep = GetHashKey(Config.weapon5)
 		end
-		
+
 		SetPedFleeAttributes(enemy, 0, 0)
-		SetPedCombatAttributes(enemy, 46, 1)
+		SetPedCombatAttributes(enemy, 46, true)
 		SetPedCombatAbility(enemy, 100)
-		SetPedCombatMovement(enemy, 3)
+		SetPedCombatMovement(enemy, 2)
 		SetPedCombatRange(enemy, 2)
 		SetPedKeepTask(enemy, true)
 		GiveWeaponToPed(enemy, wep, 500, false, true)
@@ -302,11 +305,9 @@ function spawnPed(x,y,z)
 		SetPedAsCop(enemy, true)
 		SetPedDropsWeaponsWhenDead(enemy,false)
 		TaskCombatPed(enemy, GetPlayerPed(-1), 0, 16)
-		SetPedKeepTask(enemy, true)
 		table.insert(enemies, enemy)
-		SetPedAiBlip(enemy, true)
+		--SetPedAiBlip(enemy, true)                 -- Unhash if you want enemies to show up on the map
 	end
-	--print(i,rnum,pick,#enemies)	
 end
 
 function DrawText3Ds(x,y,z, text)
@@ -324,20 +325,3 @@ function DrawText3Ds(x,y,z, text)
     DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 41, 11, 41, 68)
 end
 
---[[RegisterNetEvent('bounty:startcoop')
-AddEventHandler('bounty:startcoop', function()
-	print("STARTED")
-	main()
-end)
-
-local players = ESX.Game.GetPlayersInArea(coords, 20)
-	local playerscount = #players
-	print("Players:"..playerscount)
-	for j=1,#players do
-		print("players "..j,GetPlayerName(players[j]))
-	end
-	if playerscount == 1 then
-		main()
-	else
-		TriggerServerEvent('bounty:synccoop', players)
-end]]

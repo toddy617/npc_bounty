@@ -13,8 +13,8 @@ Locales['en'] = {
 	['payment'] = ' received',
 	['dollar'] = '$',
 	['no_tags'] = 'You do not have any Dog Tags',
-	['on_use'] = 'Decyphering intel',
+	['on_use'] = 'Deciphering intel',
 	['decipher'] = 'Deciphering intel',
 	['searching'] = 'Searching crates...',
-	['used'] = 'Somebody has already started a mission',
+	['used'] = 'Finish your started mission first',
 }

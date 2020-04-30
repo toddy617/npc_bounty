@@ -16,5 +16,5 @@ Locales['de'] = {
 	['on_use'] = 'Entschlüssle Informationen',
 	['decipher'] = 'Entschlüssle Informationen',
 	['searching'] = 'Durchsuche Kisten...',
-	['used'] = 'Jemand hat bereits eine Mission gestartet',
+	['used'] = 'Beende zuerst deine gestartete Mission',
 }
