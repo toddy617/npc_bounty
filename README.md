@@ -43,15 +43,15 @@ _[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone
 
 # Config options:
 
-- Config.Locale
-- Config.policeJob
-- Config.amountCop
-- Config.hideBlip
-- Config.cleanDead
-- Config.printRemaining
-- Config.useMythic
-- Config.progBar
-- Config.removeArea
+- Config.Locale - English or German. More translations might follow
+- Config.policeJob - The name of your servers police job
+- Config.amountCop - Amount of players with policeJob needed to start with difficulty 1
+- Config.hideBlip - For hiding the start location on the map
+- Config.cleanDead - Cleans up the killed NPCs on mission success/fail
+- Config.printRemaining - Draws the amount of NPCs remaining. Increases resource usage.
+- Config.useMythic - If you want to use mythic_notify keep this on true
+- Config.progBar - If you want to use the progressbar keep this on true
+- Config.removeArea - This will remove the red radius
 - Config.aiBlip
 - Config.useDirtyMoney
 - Config.waypoint
