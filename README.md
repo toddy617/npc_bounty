@@ -20,10 +20,10 @@ I've also translated the notifications to German.
 
 Install these like any other resource and make sure ___Config.useMythic___ and ___Config.progBar___ are set to true
 
-```
-Config.useMythic
+````lua
+Config.useMythic = true
 
-Config.progBar
+Config.progBar = true
 ```
 
 _[Mythic_notify](https://github.com/JayMontana36/mythic_notify)_
