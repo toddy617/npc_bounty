@@ -16,3 +16,6 @@ Locales['de'] = {
 	['searching'] = 'Durchsuche Kisten...',
 	['used'] = 'Beende zuerst deine gestartete Mission',
 }
+
+
+
