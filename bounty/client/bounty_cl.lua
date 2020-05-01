@@ -97,11 +97,6 @@ if not Config.useItem then
 	end)
 end
 
-RegisterNetEvent('bounty:onDuty')
-AddEventHandler('bounty:onDuty', function(copsOn)
-	onDuty = copsOn 
-end)
-
 RegisterNetEvent('bounty:syncMissionClient')
 AddEventHandler('bounty:syncMissionClient', function(missionData)
   locations = missionData
@@ -305,7 +300,7 @@ function spawnPed(x,y,z)
 			local wep
 			local enemy
 
-			if onDuty >= Config.amountCop then
+			if getCops >= Config.amountCop then
 				--Difficulty 1
 				if pick == 1 then
 					enemy = CreatePed(4, ped, x+rnum, y+rnum, z, 100.0, true, true)
@@ -324,7 +319,7 @@ function spawnPed(x,y,z)
 					wep = GetHashKey(Config.difficulty1_5)
 				end
 
-			elseif onDuty < Config.amountCop then
+			elseif getCops < Config.amountCop then
 				--Difficulty 2
 				if pick == 1 then
 					enemy = CreatePed(4, ped, x+rnum, y+rnum, z, 100.0, true, true)
