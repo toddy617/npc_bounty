@@ -3,7 +3,7 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local usedIntel = false
-local hiddencoords = Config.hiddencoords
+local hiddencoords = vector3(1100.461, -2285.486, 30.13453)
 local onDuty = 0
 
 ESX.RegisterServerCallback('bounty:getlocation', function(source, cb)
@@ -36,7 +36,7 @@ AddEventHandler("bounty:GiveItem", function(x,y,z)
 	local dist = #(vector3(x,y,z) - myPos)
 	if dist <= 3 then
     	xPlayer.addInventoryItem("dogtags", 1)
-	else
+	elseif Config.useMythic then
 		TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = _U'dist_check'})
 	end
 end)
@@ -73,8 +73,10 @@ AddEventHandler("bounty:delivery", function()
       else
         xPlayer.addAccountMoney('black_money', Config.reward)
       end
-    	TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'inform', text = _U'dollar'..Config.reward.._U'payment'})
-    else
+      if Config.useMythic then
+    	 TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'inform', text = _U'dollar'..Config.reward.._U'payment'})
+      end
+    elseif Config.useMythic then
     	TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = _U'no_tags'})
     end
 end)

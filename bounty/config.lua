@@ -6,6 +6,8 @@ Config.amountCop = 1 -- change this to increase/decrease the amount of police ne
 Config.useItem = true -- change this if you want to use an item to start missions or use a hidden location - (true/false)
 Config.hideBlip = true -- change this if useItem is false and you want the starting location to have a blip - (true/false)
 Config.cleanDead = false -- change this if you want the peds to be deleted once they die - (true/false)
+Config.useMythic = true-- change this if you want to use mythic_notify to draw notifications - (true/false)
+Config.progBar = true -- change this if you want to use progressBar or not - (true/false)
 Config.removeArea = false -- change this if you want the red circle to disappear once you're at the location - (true/false)
 Config.aiBlip = true -- change this if you want the enemies to have a blip on the map - (true/false)
 Config.useDirtyMoney = false -- change this if you want to receive dirty money for selling dog tags - (true/false)
@@ -18,7 +20,6 @@ Config.enemyVest = false -- change this if you want to give the enemies armor - 
 Config.enemyArmor = 100 -- change this to the amount you want if enemyVest is true - (0-100%)
 Config.radius = 500.0 -- change this to increase/decrease the radius of the search area. If you go below 500 you will have to change some of the spawn locations - (float value)
 Config.distance = 200 -- change this to increase/decrease the distance at which the enemies spawn - (might see enemies pop in with lower values)
-Config.hiddencoords = vector3(1100.461, -2285.486, 30.13453) -- if useItem is false then you will have to set the coords for the hidden location here - (x,y,z)
 Config.boxProp = "prop_mb_crate_01b" -- change the prop that will be used as a lootable source. Adjust crate x,y,z,h accordingly - (list of props: https://plebmasters.de/?app=objects)
 Config.spawnedEnemy = "s_m_y_blackops_01" -- change the ped that will spawn and attack you - (list of peds: https://wiki.rage.mp/index.php?title=Peds)
 
@@ -137,9 +138,9 @@ Config.locations = {
 		active = false,
 	},
 	[17] = {
-		addBlip = {x = -828.0231, y = 5180.482, z = 112.6103},
-		enemy = {x = -567.485, y = 5357.931, z = 70.21442},
-		crate = {x = 1338.902, y = 4391.864, z = 44.34374, h = 81.52},
+		addBlip = {x = 1679.898, y = 6421.697, z = 32.17084},
+		enemy = {x = 1437.715, y = 6325.19, z = 23.96961},
+		crate = {x = 1548.035, y = 6337.943, z = 24.04352, h = 246.55},
 		active = false,
 	},
 }

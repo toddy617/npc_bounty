@@ -22,8 +22,8 @@ local enemies = {}
 local box2
 local inUse = false
 local location = nil
---local rand = math.random(#Config.locations)
-local rand = 8 -- This is for testing locations only. Don't unhash this if you don't know what this does
+local rand = math.random(#Config.locations)
+--local rand = 17 -- This is for testing locations only. Don't unhash this if you don't know what this does
 
 if not Config.hideBlip then
 	Citizen.CreateThread(function()
@@ -61,7 +61,7 @@ AddEventHandler('bounty:intel', function(source)
 		usedItem = true
 		phoneAnim()
 		main()
-	else
+	elseif Config.useMythic then
 		exports['mythic_notify']:DoLongHudText('inform', _U'used')
 	end
 end)
@@ -114,7 +114,9 @@ function main()
 	location = Config.locations[rand]
 	SetNewWaypoint(location.addBlip.x,location.addBlip.y)
 	addBlip(location.addBlip.x,location.addBlip.y,location.addBlip.z)
-	exports['mythic_notify']:DoLongHudText('inform', _U'search_area')
+	if Config.useMythic then
+		exports['mythic_notify']:DoLongHudText('inform', _U'search_area')
+	end
 	local player = GetPlayerPed(-1)
 	local playerpos
 	enroute = true
@@ -124,7 +126,9 @@ function main()
 			playerpos = GetEntityCoords(player)
 			local disttocoord = #(vector3(location.enemy.x, location.enemy.y, location.enemy.z)-vector3(playerpos.x,playerpos.y,playerpos.z))
 			if disttocoord < Config.distance then
-				exports['mythic_notify']:DoLongHudText('inform', _U'kill_all')
+				if Config.useMythic then
+					exports['mythic_notify']:DoLongHudText('inform', _U'kill_all')
+				end
 				spawnPed(location.enemy.x,location.enemy.y,location.enemy.z)
 				enroute = false
 				if Config.removeArea then
@@ -173,7 +177,9 @@ function success(x,y,z,h)
 				if IsControlJustPressed(1, 51) then
 					crate = true
 					FreezeEntityPosition(GetPlayerPed(-1), true)
-					exports['progressBars']:startUI(5500, _U'searching')
+					if Config.progBar then
+						exports['progressBars']:startUI(5500, _U'searching')
+					end
 					playAnim("anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 6000)
 					Citizen.Wait(5000)
 					DoScreenFadeOut(1000)
@@ -181,7 +187,9 @@ function success(x,y,z,h)
 					DoScreenFadeIn(2000)
 					FreezeEntityPosition(GetPlayerPed(-1), false)
 					DeleteEntity(box2)
-					exports['mythic_notify']:DoLongHudText('success', _U'receive_tags')
+					if Config.useMythic then
+						exports['mythic_notify']:DoLongHudText('success', _U'receive_tags')
+					end
 					TriggerServerEvent('bounty:GiveItem', location.crate.x, location.crate.y, location.crate.z, location.crate.h)
 					Citizen.Wait(2000)
 					Config.locations[rand]['active'] = false
@@ -217,7 +225,9 @@ end)
 function phoneAnim()
 	local player = GetPlayerPed(-1)
     local x,y,z = table.unpack(GetEntityCoords(player))
-	exports['progressBars']:startUI(8000, _U'decipher')
+    if Config.progBar then
+		exports['progressBars']:startUI(8000, _U'decipher')
+	end
 	playAnim('cellphone@', 'cellphone_text_read_base', 8000)
 	Citizen.Wait(500)
 	prop = CreateObject(GetHashKey('prop_npc_phone_02'), x, y, z+0.2,  true,  true, true)
@@ -250,7 +260,9 @@ function clearmission()
 		end
 	end
 	enemies = {}
-	exports['mythic_notify']:DoLongHudText('inform', _U'search_evidence')
+	if Config.useMythic then
+		exports['mythic_notify']:DoLongHudText('inform', _U'search_evidence')
+	end
 end
 
 function checkisdead()
