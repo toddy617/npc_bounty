@@ -22,7 +22,6 @@ Install these like any other resource and make sure ___Config.useMythic___ and _
 
 ````lua
 Config.useMythic = true
-
 Config.progBar = true
 ```
 
