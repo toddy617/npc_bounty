@@ -5,6 +5,8 @@ This is a highly configurable FiveM resource made entirely in Lua. It's comparab
 
 It features basic co-op functionality and many options to tune it to your liking.
 
+[npc_bounty](https://i.imgur.com/6qLwDBk.png)
+
 ---
 
 # Prerequisites
