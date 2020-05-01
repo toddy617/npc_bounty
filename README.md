@@ -37,5 +37,6 @@ _[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone
 2. Unzip it
 3. Put it in your resource folder
 4. Add "start npc_bounty" to your server.cfg
+5. Run bounty.sql
 
 ---
