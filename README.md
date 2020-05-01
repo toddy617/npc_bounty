@@ -33,7 +33,7 @@ _[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone
 
 # How to install:
 
-1. Download the resource from GitHub
+1. Download the resource from [GitHub](https://github.com/TTVErraticAlcoholic/npc_bounty)
 2. Unzip it
 3. Put it in your resource folder
 4. Add "start npc_bounty" to your server.cfg
