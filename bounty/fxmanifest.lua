@@ -2,7 +2,7 @@ fx_version 'bodacious'
 games { 'gta5' }
 
 author 'Erratic'
-description 'bounty hunter shit'
+description 'npc_bounty'
 version '1.0.0'
 
 client_scripts {
