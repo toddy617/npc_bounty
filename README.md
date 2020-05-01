@@ -9,7 +9,7 @@ It features basic co-op functionality and many options to tune it to your liking
 
 # Optional resources: 
 
-Install these like any other resource and make sure ___Config.useMythic___ & ___Config.progBar___ are set to true
+Install these like any other resource and make sure ___Config.useMythic___ and ___Config.progBar___ are set to true
 
 _[Mythic_notify](https://github.com/JayMontana36/mythic_notify)_
 
