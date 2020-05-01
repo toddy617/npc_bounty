@@ -5,7 +5,7 @@ This is a highly configurable FiveM resource made entirely in Lua. It's comparab
 
 It features basic co-op functionality and many options to tune it to your liking.
 
-Included is a German translation
+I've also translated the notifications to German.
 
 ---
 
