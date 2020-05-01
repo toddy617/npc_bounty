@@ -43,26 +43,26 @@ _[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone
 
 # Config options:
 
-- Config.Locale - _English or German. More translations might follow_
-- Config.policeJob - _The name of your servers police job_
-- Config.amountCop - _Amount of players with policeJob needed to start with difficulty 1_
-- Config.hideBlip - _For hiding the start location on the map_
-- Config.cleanDead - _Cleans up the killed NPCs on mission success/fail_
-- Config.printRemaining - _Draws the amount of NPCs remaining. Increases resource usage_
-- Config.useMythic - _If you want to use mythic_notify keep this on true_
-- Config.progBar - _If you want to use the progressbar keep this on true_
-- Config.removeArea - _This will remove the red radius on the map once the enemies spawn_
-- Config.aiBlip - _Shows enemies on the map_
-- Config.useDirtyMoney - _If this is set to true then you will receive dirty money instead of clean cash when selling Dog Tags_
-- Config.waypoint - _Sets a waypoint to the enemies once you're close enough_
-- Config.blipSprite - _Change the sprite of the blip if you're drawing it_
-- Config.enemies - _Amount of enemies you want to spawn_
-- Config.enemyHealth - _Sets the amount of health the enemies spawn with_
-- Config.enemyAcc - _The accuracy the enemies will have_
-- Config.enemyVest - _Toggle this to give the enemies armor_
-- Config.enemyArmor - _Amount of armor you want the enemies to have if the above is true_
-- Config.radius - _The search radius you want to draw on the map_
-- Config.distance - _Enemies will spawn once you've passed the distance you set here_
-- Config.boxProp - _The prop that should spawn on success_
-- Config.spawnedEnemy - _The peds that will attack you_
-- Config.reward - _Amount of money you will receive by selling Dog Tags_
+- Config.Locale - __English or German. More translations might follow__
+- Config.policeJob - __The name of your servers police job__
+- Config.amountCop - __Amount of players with policeJob needed to start with difficulty 1__
+- Config.hideBlip - __For hiding the start location on the map__
+- Config.cleanDead - __Cleans up the killed NPCs on mission success/fail__
+- Config.printRemaining - __Draws the amount of NPCs remaining. Increases resource usage__
+- Config.useMythic - __If you want to use mythic__notify keep this on true__
+- Config.progBar - __If you want to use the progressbar keep this on true__
+- Config.removeArea - __This will remove the red radius on the map once the enemies spawn__
+- Config.aiBlip - __Shows enemies on the map__
+- Config.useDirtyMoney - __If this is set to true then you will receive dirty money instead of clean cash when selling Dog Tags__
+- Config.waypoint - __Sets a waypoint to the enemies once you're close enough__
+- Config.blipSprite - __Change the sprite of the blip if you're drawing it__
+- Config.enemies - __Amount of enemies you want to spawn__
+- Config.enemyHealth - __Sets the amount of health the enemies spawn with__
+- Config.enemyAcc - __The accuracy the enemies will have__
+- Config.enemyVest - __Toggle this to give the enemies armor__
+- Config.enemyArmor - __Amount of armor you want the enemies to have if the above is true__
+- Config.radius - __The search radius you want to draw on the map__
+- Config.distance - __Enemies will spawn once you've passed the distance you set here__
+- Config.boxProp - __The prop that should spawn on success__
+- Config.spawnedEnemy - __The peds that will attack you__
+- Config.reward - __Amount of money you will receive by selling Dog Tags__
