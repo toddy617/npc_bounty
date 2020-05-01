@@ -20,7 +20,7 @@ I've also translated the notifications to German.
 
 Install these like any other resource and make sure ___Config.useMythic___ and ___Config.progBar___ are set to true
 
-````lua
+```lua
 Config.useMythic = true
 Config.progBar = true
 ```
