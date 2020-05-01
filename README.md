@@ -11,8 +11,8 @@ It features basic co-op functionality and many options to tune it to your liking
 
 Install these like any other resource and set ___Config.useMythic___ and ___Config.progBar___ = true
 
-__[mythic_notify](https://github.com/JayMontana36/mythic_notify)__
+_[mythic_notify](https://github.com/JayMontana36/mythic_notify)_
 
-__[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone/526287)__
+_[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone/526287)_
 
 
