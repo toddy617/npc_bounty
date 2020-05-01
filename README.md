@@ -40,3 +40,29 @@ _[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone
 5. Run bounty.sql
 
 ---
+
+# Config options:
+
+- Config.Locale
+- Config.policeJob
+- Config.amountCop
+- Config.hideBlip
+- Config.cleanDead
+- Config.printRemaining
+- Config.useMythic
+- Config.progBar
+- Config.removeArea
+- Config.aiBlip
+- Config.useDirtyMoney
+- Config.waypoint
+- Config.blipSprite
+- Config.enemies
+- Config.enemyHealth
+- Config.enemyAcc
+- Config.enemyVest
+- Config.enemyArmor
+- Config.radius
+- Config.distance
+- Config.boxProp
+- Config.spawnedEnemy
+- Config.reward
