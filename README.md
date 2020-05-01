@@ -18,7 +18,7 @@ I've also translated the notifications to German.
 
 # Optional resources: 
 
-Install these like any other resource and make sure ___Config.useMythic___ and ___Config.progBar___ are set to true
+Install these like any other resource and set this in the config
 
 ```lua
 Config.useMythic = true
