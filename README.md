@@ -8,7 +8,7 @@ It features basic co-op functionality and many options to tune it to your liking
 
 Optional resources: 
 
-Install these like any other resource and set Config.useMythic and Config.progBar = true
+Install these like any other resource and set _Config.useMythic_ and _Config.progBar_ = true
 https://github.com/JayMontana36/mythic_notify
 
 https://forum.cfx.re/t/release-progress-bars-1-0-standalone/526287
