@@ -24,7 +24,7 @@ function getCops()
       onDuty = onDuty + 1
     end
   end
-  TriggerClientEvent('bounty:onDuty', -1, onDuty)
+  return onDuty
 end
 
 RegisterServerEvent("bounty:GiveItem")
