@@ -1,6 +1,6 @@
 Locales['de'] = {
-	['press_start'] = 'Drücke [ E ] um die Mission zu starten',
-	['unavailable'] = 'Momentan nicht verfügbar',
+	['press_start'] = 'Drücke [ E ] um die Informationen zu entschlüsseln',
+	['unavailable'] = 'komm später wieder',
 	['search_area'] = 'Begib dich zum Gebiet',
 	['kill_all'] = 'Töte jeden Gegner',
 	['search_crate'] = 'Drücke [ E ] um die Kisten zu durchsuchen',

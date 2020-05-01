@@ -9,7 +9,7 @@ Citizen.CreateThread(function()
 ESX.PlayerData = ESX.GetPlayerData()
 end)
 
-local onDuty
+local enemyblips = {}
 local coords
 local usedItem = false
 local active = false
@@ -22,8 +22,7 @@ local enemies = {}
 local box2
 local inUse = false
 local location = nil
-local rand = math.random(#Config.locations)
---local rand = 17 -- This is for testing locations only. Don't unhash this if you don't know what this does
+local rand
 
 if not Config.hideBlip then
 	Citizen.CreateThread(function()
@@ -47,7 +46,7 @@ Citizen.CreateThread(function()
 	while ESX == nil do TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end) Wait(0) end
     ESX.TriggerServerCallback('bounty:getlocation', function(servercoords)
         coords = servercoords
-    end)
+	end)
 end)
 
 RegisterNetEvent('bounty:synctable')
@@ -55,47 +54,38 @@ AddEventHandler('bounty:synctable', function(bool)
     inUse = bool
 end)
 
-RegisterNetEvent('bounty:intel')
-AddEventHandler('bounty:intel', function(source)
-	if not usedItem then
-		usedItem = true
-		phoneAnim()
-		main()
-	elseif Config.useMythic then
-		exports['mythic_notify']:DoLongHudText('inform', _U'used')
+Citizen.CreateThread(function()
+	while not coords do
+		Citizen.Wait(1000)
+	end
+	local sleep
+	while true do
+		sleep = 5
+		local player = GetPlayerPed(-1)
+		local playercoords = GetEntityCoords(player)
+		local dist = #(vector3(playercoords.x, playercoords.y, playercoords.z)-vector3(coords.x, coords.y, coords.z))
+		if not inUse then
+			if dist <= 3 then
+				sleep = 5
+				DrawText3Ds(coords.x, coords.y, coords.z, _U'press_start')
+				--DrawMarker(1, coords.x, coords.y, coords.z-1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.5, 2.5, 0.2, 0, 255, 100, 100, false, true, 2, false, false, false, false)
+				if IsControlJustPressed(1, 51) then
+					decipherAnim()
+					main()
+				end
+			else
+				sleep = 2000
+			end
+		elseif dist <= 3 and inUse then
+			sleep = 5
+			DrawText3Ds(coords.x, coords.y, coords.z, _U'unavailable')
+		else
+			sleep = 3000
+		end
+		Citizen.Wait(sleep)
 	end
 end)
 
-if not Config.useItem then
-	Citizen.CreateThread(function()
-		while not coords do
-			Citizen.Wait(1000)
-		end
-		local sleep
-		while true do
-			sleep = 5
-			local player = GetPlayerPed(-1)
-			local playercoords = GetEntityCoords(player)
-			local dist = #(vector3(playercoords.x, playercoords.y, playercoords.z)-vector3(coords.x, coords.y, coords.z))
-			if not inUse then
-				if dist < 10 then
-					sleep = 5
-					DrawText3Ds(coords.x, coords.y, coords.z, _U'press_start')
-					DrawMarker(1, coords.x, coords.y, coords.z-1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.5, 2.5, 0.2, 0, 255, 100, 100, false, true, 2, false, false, false, false)
-					if IsControlJustPressed(1, 51) then
-						main()
-					end		
-				end		
-			elseif dist < 10 then
-				sleep = 5
-				DrawText3Ds(coords.x, coords.y, coords.z, _U'unavailable')
-			else
-				sleep = 3000
-			end
-			Citizen.Wait(sleep)
-		end
-	end)
-end
 
 RegisterNetEvent('bounty:syncMissionClient')
 AddEventHandler('bounty:syncMissionClient', function(missionData)
@@ -106,6 +96,8 @@ end)
 function main()
 	TriggerServerEvent('bounty:updatetable', true)
 	inUse = true
+	--rand = math.random(1,#Config.locations)
+	rand = 8
 	location = Config.locations[rand]
 	SetNewWaypoint(location.addBlip.x,location.addBlip.y)
 	addBlip(location.addBlip.x,location.addBlip.y,location.addBlip.z)
@@ -115,6 +107,7 @@ function main()
 	local player = GetPlayerPed(-1)
 	local playerpos
 	enroute = true
+	local howmany
 	Citizen.CreateThread(function()
 		while enroute == true do
 			Citizen.Wait(200)
@@ -127,7 +120,7 @@ function main()
 				spawnPed(location.enemy.x,location.enemy.y,location.enemy.z)
 				enroute = false
 				if Config.removeArea then
-					RemoveBlip(radius)	
+					RemoveBlip(radius)
 				end			
 				return
 			else
@@ -136,22 +129,36 @@ function main()
 		end
 	end)
 	Citizen.CreateThread(function()
-		while inUse do 
-		Citizen.Wait(1000)
+		while inUse do
 			if IsEntityDead(player) then
 				Citizen.Wait(1000)
 				clearmission()
 				return
 			else
-				local howmany = checkisdead()
+				howmany = checkisdead()
 				if howmany == Config.enemies then
 					Citizen.Wait(2000)
 					clearmission()
 					success(location.crate.x, location.crate.y, location.crate.z, location.crate.h)
 				end
 			end
+			Citizen.Wait(1000)
 		end
 	end)
+	if Config.printRemaining then
+		Citizen.CreateThread(function()
+			local sleep = 5
+			while inUse do
+				if not enroute then
+					sleep = 5
+					DrawText2D("Enemies Killed: "..howmany,0,1,0.5,0.92,0.6,255,255,255,255)
+				else
+					sleep = 1000
+				end
+				Citizen.Wait(sleep)
+			end
+		end)
+	end
 end
 
 function success(x,y,z,h)
@@ -171,6 +178,7 @@ function success(x,y,z,h)
 				DrawText3Ds(x,y,z, _U'search_crate')
 				if IsControlJustPressed(1, 51) then
 					crate = true
+					TaskTurnPedToFaceEntity(player, box2, 5500)
 					FreezeEntityPosition(GetPlayerPed(-1), true)
 					if Config.progBar then
 						exports['progressBars']:startUI(5500, _U'searching')
@@ -198,6 +206,7 @@ function success(x,y,z,h)
 	end)
 end
 
+
 Citizen.CreateThread(function()
 	while true do
 		sleep = 5
@@ -213,22 +222,24 @@ Citizen.CreateThread(function()
 		else
 			sleep = 1500
 		end
-	Citizen.Wait(sleep)
+		Citizen.Wait(sleep)
 	end
 end)
 
-function phoneAnim()
+
+function decipherAnim()
 	local player = GetPlayerPed(-1)
     local x,y,z = table.unpack(GetEntityCoords(player))
     if Config.progBar then
 		exports['progressBars']:startUI(8000, _U'decipher')
 	end
-	playAnim('cellphone@', 'cellphone_text_read_base', 8000)
-	Citizen.Wait(500)
-	prop = CreateObject(GetHashKey('prop_npc_phone_02'), x, y, z+0.2,  true,  true, true)
-    AttachEntityToEntity(prop, player, GetPedBoneIndex(player, 28422), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, true, true, false, true, 1, true)
-    Citizen.Wait(8000)
-    DeleteObject(prop)
+	
+	SetEntityCoords(player, 1275.638, -1710.345, 53.77143, 0.0, 0.0, 0.0, false)
+	SetEntityHeading(player, 320.36)
+	FreezeEntityPosition(player, true)
+	playAnim('anim@heists@prison_heiststation@cop_reactions', 'cop_b_idle', 8000)
+	Citizen.Wait(8500)
+	FreezeEntityPosition(player, false)
 end
 
 function playAnim(animDict, animName, duration)
@@ -258,6 +269,12 @@ function clearmission()
 	if Config.useMythic then
 		exports['mythic_notify']:DoLongHudText('inform', _U'search_evidence')
 	end
+	for _, enemyblip in ipairs(enemyblips) do
+		if DoesBlipExist(enemyblip) then
+			RemoveBlip(enemyblip)
+		end
+	end
+	enemyblips = {}
 end
 
 function checkisdead()
@@ -339,30 +356,48 @@ function spawnPed(x,y,z)
 				end
 			end
 
-			SetPedFleeAttributes(enemy, 0, 0)
+			AddRelationshipGroup("enemies")
+			SetPedRelationshipGroupHash(enemy, GetHashKey("enemies"))
+			SetPedRelationshipGroupHash(GetPlayerPed(-1), GetHashKey("PLAYER"))
+			SetRelationshipBetweenGroups(5, GetHashKey("enemies"), GetHashKey("PLAYER"))
+    		SetRelationshipBetweenGroups(5, GetHashKey("PLAYER"), GetHashKey("enemies"))
+			SetRelationshipBetweenGroups(1, GetHashKey("enemies"), GetHashKey("enemies"))
+			GiveWeaponToPed(enemy, wep, 500, false, true)
 			SetPedCombatAttributes(enemy, 46, true)
 			SetPedCombatAbility(enemy, 100)
 			SetPedCombatMovement(enemy, 2)
 			SetPedCombatRange(enemy, 2)
-			SetPedKeepTask(enemy, true)
 			GiveWeaponToPed(enemy, wep, 500, false, true)
-			TaskShootAtEntity(enemy, GetPlayerPed(-1), -1, GetHashKey("FIRING_PATTERN_FULL_AUTO"))
 			SetEntityMaxHealth(enemy, Config.enemyHealth)
 			SetEntityHealth(enemy, Config.enemyHealth)
 			SetPedAccuracy(enemy, Config.enemyAcc)
-			SetPedAsCop(enemy, true)
-			SetPedDropsWeaponsWhenDead(enemy,false)
-			TaskCombatPed(enemy, GetPlayerPed(-1), 0, 16)
+			SetPedDropsWeaponsWhenDead(enemy, false)
 			table.insert(enemies, enemy)
 			if Config.enemyVest then
 				SetPedArmour(enemy, Config.enemyArmor)
-			end
-			if Config.aiBlip then
-				SetPedAiBlip(enemy, true) 
-			end               
+			end		
 		end
 	end)
+	if Config.aiBlip then
+		for _, enemy in ipairs(enemies) do
+			enemyblip = AddBlipForEntity(enemy)
+			SetBlipScale(enemyblip, 0.6)
+			SetBlipColour(enemyblip, 2)
+			table.insert(enemyblips, enemyblip)
+		end
+	end
 end
+
+AddEventHandler('onClientResourceStart', function (resourceName)
+	if(GetCurrentResourceName() ~= resourceName) then
+	  return
+	end
+	print('The resource ' .. resourceName .. ' has been started on the client.')
+end)
+
+AddEventHandler('onClientResourceStop', function (resourceName)
+print('The resource ' .. resourceName .. ' has been stopped on the client.')
+end)
 
 function DrawText3Ds(x,y,z, text)
     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
@@ -377,4 +412,19 @@ function DrawText3Ds(x,y,z, text)
     DrawText(_x,_y)
     local factor = (string.len(text)) / 370
     DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 41, 11, 41, 68)
+end
+
+function DrawText2D(text,font,centre,x,y,scale,r,g,b,a)
+	SetTextFont(6)
+	SetTextProportional(6)
+	SetTextScale(scale/1.0, scale/1.0)
+	SetTextColour(r, g, b, a)
+	SetTextDropShadow(0, 0, 0, 0,255)
+	SetTextEdge(1, 0, 0, 0, 255)
+	SetTextDropShadow()
+	SetTextOutline()
+	SetTextCentre(centre)
+	SetTextEntry("STRING")
+	AddTextComponentString(text)
+	DrawText(x,y)
 end

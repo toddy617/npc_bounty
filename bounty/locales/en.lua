@@ -1,6 +1,6 @@
 Locales['en'] = {
-	['press_start'] = 'Press [ E ] to start a mission',
-	['unavailable'] = 'Currently unavailable',
+	['press_start'] = 'Press [ E ] to decipher intel',
+	['unavailable'] = 'Come back later',
 	['search_area'] = 'Go to the search area',
 	['kill_all'] = 'Kill all the enemies',
 	['search_crate'] = 'Press [ E ] to search the crates',
@@ -12,7 +12,7 @@ Locales['en'] = {
 	['payment'] = ' received',
 	['dollar'] = '$',
 	['no_tags'] = 'You do not have any Dog Tags',
-	['decipher'] = 'Deciphering intel',
+	['decipher'] = 'Deciphering intel...',
 	['searching'] = 'Searching crates...',
 	['used'] = 'Finish your started mission first',
 }

@@ -2,8 +2,7 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-local usedIntel = false
-local hiddencoords = vector3(1100.461, -2285.486, 30.13453)
+local hiddencoords = vector3(1276.191, -1710.02, 54.7715)
 local onDuty = 0
 
 ESX.RegisterServerCallback('bounty:getlocation', function(source, cb)
@@ -40,14 +39,6 @@ AddEventHandler("bounty:GiveItem", function(x,y,z)
 		TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = _U'dist_check'})
 	end
 end)
-
-if Config.useItem then
-	ESX.RegisterUsableItem('intel', function(source)
-	    local xPlayer = ESX.GetPlayerFromId(source)
-	    xPlayer.removeInventoryItem('intel', 1)
-	    TriggerClientEvent('bounty:intel', source)
-	end)
-end
 
 RegisterNetEvent('bounty:updatetable')
 AddEventHandler('bounty:updatetable', function(bool)
