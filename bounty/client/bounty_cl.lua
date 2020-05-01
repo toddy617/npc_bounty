@@ -66,26 +66,6 @@ AddEventHandler('bounty:intel', function(source)
 	end
 end)
 
-RegisterCommand('test', function()
-    local hash = GetHashKey("s_m_y_blackops_01")
-    RequestModel(hash)
-    while not HasModelLoaded(hash) do
-        Citizen.Wait(0)
-    end
-    local ped = CreatePed(4, hash, GetEntityCoords(GetPlayerPed(-1)), 0.0, true, true)
-    local headshot = RegisterPedheadshotTransparent(ped)
-    while not IsPedheadshotReady(headshot) or not IsPedheadshotValid(headshot) do
-        Citizen.Wait(0)
-    end
-    local txd = GetPedheadshotTxdString(headshot)
-    print(txd)
-    SetNotificationTextEntry("STRING")
-    AddTextComponentSubstringPlayerName("This is your target")
-    EndTextCommandThefeedPostMessagetext(txd, txd, true, 2, "Anonymous", "RE: Get rid of him")
-    UnregisterPedheadshot(headshot)
-end)
-
-
 if not Config.useItem then
 	Citizen.CreateThread(function()
 		while not coords do
