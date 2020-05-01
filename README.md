@@ -19,8 +19,10 @@ I've also translated the notifications to German.
 # Optional resources: 
 
 Install these like any other resource and make sure ___Config.useMythic___ and ___Config.progBar___ are set to true
-`___Config.useMythic___ 
-___Config.progBar___ `
+
+`Config.useMythic
+
+Config.progBar`
 
 _[Mythic_notify](https://github.com/JayMontana36/mythic_notify)_
 
