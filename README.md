@@ -7,7 +7,7 @@ It features basic co-op functionality and many options to tune it to your liking
 
 ---
 
-#Optional resources: 
+# Optional resources: 
 
 Install these like any other resource and set ___Config.useMythic___ and ___Config.progBar___ = true
 
