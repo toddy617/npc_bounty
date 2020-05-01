@@ -9,11 +9,11 @@ Config.cleanDead = false -- change this if you want the peds to be deleted once 
 Config.removeArea = false -- change this if you want the red circle to disappear once you're at the location - (true/false)
 Config.aiBlip = true -- change this if you want the enemies to have a blip on the map - (true/false)
 Config.useDirtyMoney = false -- change this if you want to receive dirty money for selling dog tags - (true/false)
-Config.waypoint = false -- change this to set a waypoint to the spawn location once you're close enough - (true/false)
+Config.waypoint = true -- change this to set a waypoint to the spawn location once you're close enough - (true/false)
 Config.blipSprite = 90 -- if hideBlip is false then change this to your preferred sprite - (list of sprites: https://wiki.gtanet.work/index.php?title=Blips)
-Config.enemies = 10 -- change this to the amount of enemies you want to spawn at a location - (10-20 enemies recommended)
+Config.enemies = 10 -- change this to the amount of enemies you want to spawn at a location. If this is 20 then 2-4 players are recommended. Tested with 10 - (10-20 enemies recommended)
 Config.enemyHealth = 400 -- change this to the amount of health you want the enemies to have - (400 is default)
-Config.enemyAcc = 40 -- change this to the accuracy you want the enemies to have - (40% is default)
+Config.enemyAcc = 40 -- change this to the accuracy you want the enemies to have. Recommend increasing this based on Config.enemies - (40% is default)
 Config.enemyVest = false -- change this if you want to give the enemies armor - (true/false)
 Config.enemyArmor = 100 -- change this to the amount you want if enemyVest is true - (0-100%)
 Config.radius = 500.0 -- change this to increase/decrease the radius of the search area. If you go below 500 you will have to change some of the spawn locations - (float value)
@@ -60,26 +60,26 @@ Config.locations = {
 	},																			
 	[4] = {
 		addBlip = {x = 2667.334, y = 2669.441, z = 79.88748},
-		enemy = {x = 2335.931, y = 2539.041, z = 46.66755},
+		enemy = {x = 2299.361, y = 2555.237, z = 46.67575},
 		crate = {x = 2326.641, y =  2529.753, z = 46.66772, h = 76.28},
 		active = false,
 	},
 	[5] = {
 		addBlip = {x = 2206.111, y = 3184.629, z = 54.40459},
-		enemy = {x = 2381.442, y = 3058.493, z = 48.17504},
+		enemy = {x = 2351.201, y = 3056.046, z = 48.15234},
 		crate = {x = 2330.987, y = 3041.127, z = 48.15135, h = 183.24},
 		active = false,
 	},
 	[6] = {
 		addBlip = {x = 2206.111, y = 3184.629, z = 54.40459},
-		enemy = {x = 2486.122, y = 3452.635, z = 50.00252},
-		crate = {x = 2492.29, y = 3462.899, z = 47.06067, h = 230.69},
+		enemy = {x = 2056.352, y = 3192.918, z = 45.19276},
+		crate = {x = 2046.71, y = 3209.054, z = 45.16854, h = 243.74},
 		active = false,
 	},
 	[7] = {
 		addBlip = {x = 1286.401, y = 2160.646, z = 81.93208},
-		enemy = {x = 1108.831, y = 2180.395, z = 45.06644},
-		crate = {x = 1114.659, y = 2201.128, z = 49.02877, h = 128.9},
+		enemy = {x = 1118.345, y = 2092.096, z = 55.5671},
+		crate = {x = 1137.049, y = 2080.074, z = 55.55048, h = 178.54},
 		active = false,
 	},
 	[8] = {

@@ -23,7 +23,7 @@ local box2
 local inUse = false
 local location = nil
 --local rand = math.random(#Config.locations)
-local rand = 16 -- This is for testing locations only. Don't unhash this if you don't know what this does
+local rand = 8 -- This is for testing locations only. Don't unhash this if you don't know what this does
 
 if not Config.hideBlip then
 	Citizen.CreateThread(function()
@@ -308,7 +308,7 @@ function spawnPed(x,y,z)
     		SetNewWaypoint(x, y)
     	end
 		for i=1,Config.enemies do
-			local rnum = math.random(10,40)
+			local rnum = math.random(10,50)
 			local pick = math.random(1,5)
 			local wep
 			local enemy
