@@ -1,5 +1,5 @@
 # npc_bounty
-[Video showcase](https://streamable.com/sujyy9)
+[Quick video showcase](https://streamable.com/sujyy9)
 
 This is a highly configurable FiveM resource made entirely in Lua. It's comparable to the GTA:O gang attacks.
 
