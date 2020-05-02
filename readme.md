@@ -27,7 +27,7 @@ I've also translated the notifications to German.
 
 - ESX
 - A working database
-- OneSync enabled on your FiveM server (If you don't want to use OneSync see this comment made by user StanD3v https://forum.cfx.re/t/release-v1-0-npc-bounty-a-highly-configurable-resource-for-co-op-pve/1182891/21)
+- OneSync enabled on your FiveM server ([If you don't want to use OneSync see this comment made by user StanD3v] (https://forum.cfx.re/t/release-v1-0-npc-bounty-a-highly-configurable-resource-for-co-op-pve/1182891/21)
 
 ---
 
