@@ -1,7 +1,7 @@
 # npc_bounty
 [Quick video showcase](https://streamable.com/sujyy9)
 
-This is a (somewhat) highly configurable FiveM resource made entirely in Lua. It's comparable to the GTA:O gang attacks.
+This is a (somewhat) configurable FiveM resource made entirely in Lua. It's comparable to the GTA:O gang attacks.
 
 It features basic co-op functionality and many options to tune it to your liking.
 
