@@ -91,5 +91,5 @@ _[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone
 
 Your fxmanifest should look like the one below
 
-![Your fxmanifest should look like this](https://i.imgur.com/CWSRFor.png)
+![Your fxmanifest should look like this](https://i.imgur.com/1Z2Tky1.png)
 
