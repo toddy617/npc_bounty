@@ -25,9 +25,9 @@ I've also translated the notifications to German.
 
 # Prerequisites
 
-[x] ESX
-[x] A working database
-[x] OneSync enabled on your FiveM server
+- ESX
+- A working database
+- OneSync enabled on your FiveM server
 
 ---
 
