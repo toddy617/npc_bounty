@@ -90,5 +90,6 @@ _[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone
 5. Done
 
 Your fxmanifest should look like the one below
+
 ![Your fxmanifest should look like this](https://i.imgur.com/CWSRFor.png)
 
