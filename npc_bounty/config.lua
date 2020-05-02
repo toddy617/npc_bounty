@@ -1,5 +1,6 @@
 Config = {}
 Config.Locale = 'en' -- Language of the resource - (en, de)
+Config.getCoords = false -- useful for getting adding locations, only enable this if you're getting coords
 
 Config.policeJob = "police" -- change this to the name of the police job on your server - (name, not label)
 Config.amountCop = 1 -- change this to increase/decrease the amount of police needed to start the mission with difficulty 1 

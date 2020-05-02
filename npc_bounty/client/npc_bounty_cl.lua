@@ -416,17 +416,19 @@ function DrawText2D(text,font,centre,x,y,scale,r,g,b,a)
 	DrawText(x,y)
 end
 
--- Shows your coords, useful if you want to add new locations.
+-- (Optional) Shows your coords, useful if you want to add new locations.
 
---[[RegisterCommand("mycoords", function()
-	local player = GetPlayerPed(-1)
-    local x,y,z = table.unpack(GetEntityCoords(player))
-    print("X: "..x.." Y: "..y.." Z: "..z)
-end)
+if Config.getCoords then
+	RegisterCommand("mycoords", function()
+		local player = GetPlayerPed(-1)
+	    local x,y,z = table.unpack(GetEntityCoords(player))
+	    print("X: "..x.." Y: "..y.." Z: "..z)
+	end)
+end
 
 -- More optional stuff
 
-AddEventHandler('onClientResourceStart', function (resourceName)
+--[[AddEventHandler('onClientResourceStart', function (resourceName)
 	if(GetCurrentResourceName() ~= resourceName) then
 	  return
 	end
