@@ -10,7 +10,7 @@ client_scripts {
 	'locales/de.lua',
 	'locales/en.lua',
 	'config.lua',
-    'client/bounty_cl.lua'
+    'client/npc_bounty_cl.lua'
 }
 
 server_scripts {
@@ -18,7 +18,7 @@ server_scripts {
 	'locales/de.lua',
 	'locales/en.lua',
 	'config.lua',
-    'server/bounty_sv.lua'
+    'server/npc_bounty_sv.lua'
 }
 
 

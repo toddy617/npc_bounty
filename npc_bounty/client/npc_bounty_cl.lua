@@ -229,7 +229,6 @@ end)
 
 function decipherAnim()
 	local player = GetPlayerPed(-1)
-    local x,y,z = table.unpack(GetEntityCoords(player))
     if Config.progBar then
 		exports['progressBars']:startUI(8000, _U'decipher')
 	end
@@ -387,17 +386,6 @@ function spawnPed(x,y,z)
 	end
 end
 
-AddEventHandler('onClientResourceStart', function (resourceName)
-	if(GetCurrentResourceName() ~= resourceName) then
-	  return
-	end
-	print('The resource ' .. resourceName .. ' has been started on the client.')
-end)
-
-AddEventHandler('onClientResourceStop', function (resourceName)
-print('The resource ' .. resourceName .. ' has been stopped on the client.')
-end)
-
 function DrawText3Ds(x,y,z, text)
     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
     local px,py,pz=table.unpack(GetGameplayCamCoords())
@@ -427,3 +415,24 @@ function DrawText2D(text,font,centre,x,y,scale,r,g,b,a)
 	AddTextComponentString(text)
 	DrawText(x,y)
 end
+
+-- Shows your coords, useful if you want to add new locations.
+
+--[[RegisterCommand("mycoords", function()
+	local player = GetPlayerPed(-1)
+    local x,y,z = table.unpack(GetEntityCoords(player))
+    print("X: "..x.." Y: "..y.." Z: "..z)
+end)
+
+-- More optional stuff
+
+AddEventHandler('onClientResourceStart', function (resourceName)
+	if(GetCurrentResourceName() ~= resourceName) then
+	  return
+	end
+	print('The resource ' .. resourceName .. ' has been started on the client.')
+end)
+
+AddEventHandler('onClientResourceStop', function (resourceName)
+print('The resource ' .. resourceName .. ' has been stopped on the client.')
+end)]]
