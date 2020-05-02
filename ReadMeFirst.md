@@ -87,7 +87,7 @@ _[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone
 
 # How to add new locations:
 
-1. Download a tool like vMenu or set Config.getCoords to true 
+1. Download a tool like vMenu or set Config.getCoords to true and use the command
 2. Find a suitable location for the middle of the area based on your radius
 3. Find a suitable location for enemies to spawn. Make sure you have enough space so they don't spawn inside stuff
 4. Find a good location for the crate spawn. (Optional) Hide it well
