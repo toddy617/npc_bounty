@@ -13,7 +13,7 @@ I've also translated the notifications to German.
 
 - ESX
 - A working database
-- OneSync (maybe)
+- OneSync enabled on your FiveM server
 
 ---
 
