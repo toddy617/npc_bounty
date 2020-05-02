@@ -68,3 +68,25 @@ _[Progress Bars 1.0](https://forum.cfx.re/t/release-progress-bars-1-0-standalone
 - Config.boxProp - __The prop that should spawn on success__
 - Config.spawnedEnemy - __The peds that will attack you__
 - Config.reward - __Amount of money you will receive by selling Dog Tags__
+
+---
+
+# How to add new locations:
+
+1. Download a tool like vMenu or set Config.getCoords to true 
+2. Find a suitable location for the middle of the area based on your radius
+3. Find a suitable location for enemies to spawn. Make sure you have enough space so they don't spawn inside stuff
+4. Find a good location for the crate spawn. (Optional) Hide it well
+5. Done
+
+---
+
+# How to add more languages:
+
+1. Open the locales folder
+2. Create a new file in the locales folder and name it "yourlanguage".lua
+3. Translate the locales from English/German to your preferred language
+4. Add "yourlanguage".lua to the client_scripts and server_scripts in the fxmanifest.lua
+5. Done
+
+![Your fxmanifest should look like this](https://i.imgur.com/CWSRFor.png)
