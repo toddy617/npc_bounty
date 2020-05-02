@@ -96,8 +96,7 @@ end)
 function main()
 	TriggerServerEvent('bounty:updatetable', true)
 	inUse = true
-	--rand = math.random(1,#Config.locations)
-	rand = 8
+	rand = math.random(1,#Config.locations)
 	location = Config.locations[rand]
 	SetNewWaypoint(location.addBlip.x,location.addBlip.y)
 	addBlip(location.addBlip.x,location.addBlip.y,location.addBlip.z)
