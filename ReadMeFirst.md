@@ -7,6 +7,20 @@ It features basic co-op functionality and many options to tune it to your liking
 
 I've also translated the notifications to German.
 
+# Table of contents
+
+[Prerequisites](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#prerequisites)
+
+[Optional resources](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#optionalresources)
+
+[How to install](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#howtoinstall)
+
+[Config options](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#configoptions)
+
+[How to add new locations](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#howtoaddnewlocations)
+
+[How to add more languages](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#howtoaddmorelanguages)
+
 ---
 
 # Prerequisites
