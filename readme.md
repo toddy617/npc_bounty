@@ -9,17 +9,17 @@ I've also translated the notifications to German.
 
 # Table of contents
 
-[Prerequisites](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#prerequisites)
+[Prerequisites](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/readme.md#prerequisites)
 
-[Optional resources](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#optional-resources)
+[Optional resources](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/readme.md#optional-resources)
 
-[How to install](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#how-to-install)
+[How to install](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/readme.md#how-to-install)
 
-[Config options](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#config-options)
+[Config options](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/readme.md#config-options)
 
-[How to add new locations](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#how-to-add-new-locations)
+[How to add new locations](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/readme.md#how-to-add-new-locations)
 
-[How to add more languages](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/ReadMeFirst.md#how-to-add-more-languages)
+[How to add more languages](https://github.com/TTVErraticAlcoholic/npc_bounty/blob/master/readme.md#how-to-add-more-languages)
 
 ---
 
